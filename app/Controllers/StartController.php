@@ -6,6 +6,9 @@ class StartController
 {
     public function start(): void
     {
-        echo env('APP_NAME');
+        echo dd([
+            "hi" => "hello",
+            "hey" => "by"
+        ]);
     }
 }
