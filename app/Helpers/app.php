@@ -2,7 +2,7 @@
 
 use App\Utils\Env;
 
-function env($key): void
+function env($key): ?string
 {
-    Env::get($key);
+    return Env::get($key);
 }
