@@ -11,6 +11,6 @@ class Log {
         $template .= print_r($value, true);
         $template .= "</pre>";
 
-        return $template;
+        die($template);
     }
 }

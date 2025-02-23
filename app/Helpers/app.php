@@ -10,5 +10,5 @@ function env($key): ?string
 
 function dd($var): string
 {
-    return Log::dd($var);
+    Log::dd($var);
 }
