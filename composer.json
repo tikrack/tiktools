@@ -18,6 +18,7 @@
   "require": {
     "flightphp/core": "^3.14",
     "laravel/pint": "^1.21",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "symfony/var-dumper": "^7.2"
   }
 }

@@ -14,10 +14,10 @@ class StartController
     {
         $client = new Client();
 
-        $response =  $client->get("https://api.salamlang.ir/api/v1/code");
+        $response = $client->get("https://api.salamlang.ir/api/v1/code");
 
-        $result = $response->getBody();
+        $result = $response->getBody()->getContents();
 
-        dd($result);
+        dd("this is a test");
     }
 }
