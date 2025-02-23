@@ -17,6 +17,7 @@
   ],
   "require": {
     "flightphp/core": "^3.14",
-    "laravel/pint": "^1.21"
+    "laravel/pint": "^1.21",
+    "guzzlehttp/guzzle": "^7.0"
   }
 }
