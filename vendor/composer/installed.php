@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd57417eed48ef3c2528b14f4ff3028b289f7cec2',
+        'reference' => '542fb40204f075503e0f6a4e147ceeab4e5ceaf7',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd57417eed48ef3c2528b14f4ff3028b289f7cec2',
+            'reference' => '542fb40204f075503e0f6a4e147ceeab4e5ceaf7',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -27,6 +27,15 @@
             'install_path' => __DIR__ . '/../flightphp/core',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'laravel/pint' => array(
+            'pretty_version' => 'v1.21.0',
+            'version' => '1.21.0.0',
+            'reference' => '531fa0871fbde719c51b12afa3a443b8f4e4b425',
+            'type' => 'project',
+            'install_path' => __DIR__ . '/../laravel/pint',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'mikecao/flight' => array(
             'dev_requirement' => false,

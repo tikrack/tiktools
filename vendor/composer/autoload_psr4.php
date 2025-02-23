@@ -6,4 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Database\\Seeders\\' => array($vendorDir . '/laravel/pint/database/seeders'),
+    'Database\\Factories\\' => array($vendorDir . '/laravel/pint/database/factories'),
+    'App\\' => array($baseDir . '/app', $vendorDir . '/laravel/pint/app'),
 );
