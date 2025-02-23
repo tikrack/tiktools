@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71ce37bb0ac558423e5bb4f12c224e7b",
+    "content-hash": "4728a51bd9be2cc6c1cd96bbbe593edb",
     "packages": [
         {
             "name": "flightphp/core",
@@ -79,9 +79,7 @@
                 "source": "https://github.com/flightphp/core/tree/v3.14.0"
             },
             "time": "2025-02-21T17:42:57+00:00"
-        }
-    ],
-    "packages-dev": [
+        },
         {
             "name": "laravel/pint",
             "version": "v1.21.0",
@@ -149,15 +147,13 @@
             "time": "2025-02-18T03:18:57+00:00"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "ext-pdo": "*",
-        "ext-json": "*"
-    },
+    "platform": {},
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

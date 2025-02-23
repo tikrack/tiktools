@@ -1,18 +1,22 @@
 {
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        },
-        "files": [
-            "app/Helpers/app.php"
-        ]
+  "name": "tikrack/tiktools",
+  "description": "Tiktools is a ready-made and comprehensive tool for deploying your GitHub sources on other platforms. With this tool, you can easily share all your sources on Telegram or other platforms without any hassle. By the way, we are in the process of upgrading, and we wouldn’t mind some help",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
     },
-    "require": {
-        "flightphp/core": "^3.14",
-        "ext-pdo": "*",
-        "ext-json": "*"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.17"
+    "files": [
+      "app/Helpers/app.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "tikrack",
+      "email": "tikrackcode@gmail.com"
     }
+  ],
+  "require": {
+    "flightphp/core": "^3.14",
+    "laravel/pint": "^1.21"
+  }
 }
