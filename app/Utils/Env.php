@@ -6,7 +6,7 @@ class Env
 {
     public static function get($key): ?string
     {
-        $file = fopen(__DIR__ . "/../../" . '.env', 'r');
+        $file = fopen(__DIR__.'/../../'.'.env', 'r');
         if ($file) {
             while (($line = fgets($file)) !== false) {
                 $line = trim($line);

@@ -6,6 +6,6 @@ class StartController
 {
     public function start(): void
     {
-        echo env("APP_NAME");
+        echo env('APP_NAME');
     }
 }
