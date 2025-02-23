@@ -29,6 +29,8 @@ class GithubController
                     'query' => [
                         'page' => $page,
                         'per_page' => 10,
+                        'sort' => 'updated',
+                        'direction' => 'desc'
                     ],
                 ]);
 
@@ -55,7 +57,9 @@ class GithubController
     private static function saveRepo($repos): void
     {
         $file = fopen("../data/Repos.json", "w");
+
         fwrite($file, json_encode($repos, JSON_PRETTY_PRINT));
+
         fclose($file);
     }
 }
