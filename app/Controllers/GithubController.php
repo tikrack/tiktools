@@ -56,9 +56,21 @@ class GithubController
 
     private static function saveRepo($repos): void
     {
+        $tiktools = [];
+
+        foreach ($repos as $repo) {
+            if (isset($repo['topics'][0])) {
+                $topics = $repo['topics'];
+
+                if (in_array("tiktools", $topics)) {
+                    $tiktools[] = $repo;
+                }
+            }
+        }
+
         $file = fopen("../data/Repos.json", "w");
 
-        fwrite($file, json_encode($repos, JSON_PRETTY_PRINT));
+        fwrite($file, json_encode($tiktools, JSON_PRETTY_PRINT));
 
         fclose($file);
     }
