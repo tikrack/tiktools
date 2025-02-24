@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+
+<?php
+
+require 'vendor/autoload.php';
+
+unset($argv[0]);
+$argv = array_values($argv);
+
+switch ($argv[0]) {
+    case "":
+
+        break;
+    default:
+
+        break;
+}
