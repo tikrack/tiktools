@@ -94,12 +94,25 @@ class GithubController
             $template .= $repo["description"] . "\n\n";
         }
 
-        $template .= $repo["html_url"] . "\n";
+        $template .= $repo["html_url"] . "\n\n";
 
         foreach ($repo["topics"] as $topic) {
             $template .= "#" . $topic . " ";
         }
 
         TelegramController::send($template);
+
+        $writtenFile = fopen("../data/Written.json", "r");
+        $written = fread($writtenFile, filesize("../data/Written.json"));
+        fclose($writtenFile);
+        $written = json_decode($written, true);
+
+        $written[] = [
+            'id' => $repo["id"],
+        ];
+
+        $file = fopen('../data/Written.json', 'w');
+        fwrite($file, json_encode($written, JSON_PRETTY_PRINT));
+        fclose($file);
     }
 }
