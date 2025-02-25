@@ -86,6 +86,6 @@ class GithubController
 
     private static function create($id)
     {
-
+        echo "pk";
     }
 }

@@ -6,7 +6,7 @@ class StartController
 {
     public function start(): void
     {
-        //        GithubController::repo();
+        GithubController::repo();
         GithubController::write();
     }
 }
