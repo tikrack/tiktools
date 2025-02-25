@@ -88,7 +88,7 @@ class GithubController
     {
         $template = "";
 
-        $template .= $repo["name"] . "\n";
+        $template .= "**" . $repo["name"] . "**" . "\n\n";
 
         if (isset($repo["description"])) {
             $template .= $repo["description"] . "\n";
