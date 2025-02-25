@@ -81,6 +81,12 @@ class GithubController
             if (!in_array($id, array_column($written, 'id'))) {
                 self::create($repo);
             }
+
+            foreach ($written as $w) {
+                if ($id === $w["id"] and ($repo["updated_at"] !== $w["last_update"])) {
+                    self::create($repo);
+                }
+            }
         }
     }
 
