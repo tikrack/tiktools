@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Controllers;
+
+use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+
+class TelegramController
+{
+    public static function send($message): void
+    {
+        $token = env("TELEGRAM_BOT_TOKEN");
+        $channelUsername = env("TELEGRAM_CHANNEL_ID");
+
+        $client = new Client();
+        $url = "https://api.telegram.org/bot{$token}/sendMessage";
+
+        try {
+            $client->post($url, ['form_params' => ['chat_id' => $channelUsername, 'text' => $message]]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        } catch (GuzzleException $e) {
+            dd($e);
+        }
+    }
+}
