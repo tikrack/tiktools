@@ -84,16 +84,10 @@ class GithubController
         }
     }
 
-    private static function create($repo): void
+    private static function create($repos): void
     {
-        global $template;
-
-        $template .= $repo["name"] . "\n";
-
-        if (isset($repo["description"])) {
-            $template .= $repo["description"] . "\n";
+        foreach ($repos as $repo) {
+            TelegramController::send("dok");
         }
-
-        TelegramController::send($template);
     }
 }
