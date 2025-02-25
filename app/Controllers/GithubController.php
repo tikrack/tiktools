@@ -84,7 +84,7 @@ class GithubController
         }
     }
 
-    private static function create($id)
+    private static function create($id): void
     {
         echo "pk";
     }
