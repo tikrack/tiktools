@@ -84,13 +84,13 @@ class GithubController
 
             foreach ($written as $w) {
                 if ($id === $w["id"] and ($repo["updated_at"] !== $w["last_update"])) {
-                    self::create($repo);
+                    self::create($repo, true);
                 }
             }
         }
     }
 
-    private static function create($repo): void
+    private static function create($repo, $map): void
     {
         $template = "";
 
@@ -113,10 +113,14 @@ class GithubController
         fclose($writtenFile);
         $written = json_decode($written, true);
 
-        $written[] = [
-            'id' => $repo["id"],
-            'last_update' => $repo["updated_at"],
-        ];
+        if ($map !== true) {
+            $written[] = [
+                'id' => $repo["id"],
+                'last_update' => $repo["updated_at"],
+            ];
+        }else {
+
+        }
 
         $file = fopen('../data/Written.json', 'w');
         fwrite($file, json_encode($written, JSON_PRETTY_PRINT));
