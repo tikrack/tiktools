@@ -78,10 +78,8 @@ class GithubController
         foreach ($repos as $repo) {
             $id = $repo['id'];
 
-            foreach ($written as $w) {
-                if ($id !== $w["id"]) {
-                    self::create($repo);
-                }
+            if (!in_array($id, array_column($written, 'id'))) {
+                self::create($repo);
             }
         }
     }
