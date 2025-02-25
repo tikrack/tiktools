@@ -78,8 +78,10 @@ class GithubController
         foreach ($repos as $repo) {
             $id = $repo['id'];
 
-            if (!in_array($id, array_column($written, 'id'))) {
-                self::create($repo);
+            foreach ($written as $w) {
+                if ($id !== $w["id"]) {
+                    self::create($repo);
+                }
             }
         }
     }
@@ -109,6 +111,7 @@ class GithubController
 
         $written[] = [
             'id' => $repo["id"],
+            'last_update' => $repo["updated_at"],
         ];
 
         $file = fopen('../data/Written.json', 'w');
