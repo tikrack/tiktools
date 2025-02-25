@@ -79,13 +79,21 @@ class GithubController
             $id = $repo['id'];
 
             if (!in_array($id, array_column($written, 'id'))) {
-                self::create($id);
+                self::create($repo);
             }
         }
     }
 
-    private static function create($id): void
+    private static function create($repo): void
     {
-        echo "pk";
+        static $template;
+
+        $template .= $repo["name"] . "\n";
+
+        if (isset($repo["description"])) {
+            $template .= $repo["description"] . "\n";
+        }
+
+        TelegramController::send($template);
     }
 }
