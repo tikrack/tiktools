@@ -88,10 +88,10 @@ class GithubController
     {
         $template = "";
 
-        $template .= "<strong>" . $repo["name"] . "</strong>";
+        $template .= "<strong>" . $repo["name"] . "</strong> \n\n";
 
         if (isset($repo["description"])) {
-            $template .= $repo["description"];
+            $template .= $repo["description"] . "\n\n";
         }
 
         TelegramController::send($template);
