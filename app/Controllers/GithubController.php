@@ -94,7 +94,7 @@ class GithubController
             $template .= $repo["description"] . "\n\n";
         }
 
-        $template .= $repo["url"] . "\n";
+        $template .= $repo["html_url"] . "\n";
 
         foreach ($repo["topics"] as $topic) {
             $template .= "#" . $topic . " ";
