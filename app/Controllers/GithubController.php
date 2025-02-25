@@ -12,27 +12,14 @@ class GithubController
         $token = env('GITHUB_ACCESS_TOKEN');
         $username = env('GITHUB_USERNAME');
 
-        $client = new Client([
-            'base_uri' => 'https://api.github.com',
-            'headers' => [
-                'Authorization' => "token {$token}",
-                'Accept' => 'application/vnd.github.v3+json',
-            ],
-        ]);
+        $client = new Client(['base_uri' => 'https://api.github.com', 'headers' => ['Authorization' => "token {$token}", 'Accept' => 'application/vnd.github.v3+json',],]);
 
         $page = 1;
         $repositories = [];
 
         try {
             while (true) {
-                $response = $client->get("/users/{$username}/repos", [
-                    'query' => [
-                        'page' => $page,
-                        'per_page' => 10,
-                        'sort' => 'updated',
-                        'direction' => 'desc',
-                    ],
-                ]);
+                $response = $client->get("/users/{$username}/repos", ['query' => ['page' => $page, 'per_page' => 10, 'sort' => 'updated', 'direction' => 'desc',],]);
 
                 $currentRepos = json_decode($response->getBody(), true);
 
@@ -47,9 +34,9 @@ class GithubController
 
             self::saveRepo($repositories);
         } catch (RequestException $e) {
-            echo 'Error: '.$e->getMessage();
+            echo 'Error: ' . $e->getMessage();
             if ($e->hasResponse()) {
-                echo "\nResponse: ".$e->getResponse()->getBody();
+                echo "\nResponse: " . $e->getResponse()->getBody();
             }
         }
     }
@@ -75,12 +62,34 @@ class GithubController
         fclose($file);
     }
 
-    public static function write()
+    public static function write(): void
     {
-        $file = fopen('../data/Written.json', 'w');
+        $reposFile = fopen("../data/Repos.json", "r");
+        $repos = fread($reposFile, filesize("../data/Repos.json"));
+        fclose($reposFile);
 
-        fwrite($file, json_encode(['ojd' => 'ssokok'], JSON_PRETTY_PRINT));
+        $writtenFile = fopen("../data/Written.json", "r");
+        $written = fread($writtenFile, filesize("../data/Written.json"));
+        fclose($writtenFile);
 
-        fclose($file);
+        $repos = json_decode($repos, true);
+        $written = json_decode($written, true);
+
+        foreach ($repos as $repo) {
+            $id = $repo['id'];
+
+            foreach ($written as $wr) {
+                $wrId = $wr['id'];
+
+                if ($id === $wrId) {
+                    self::create($id);
+                }
+            }
+        }
+    }
+
+    private static function create($id)
+    {
+
     }
 }
