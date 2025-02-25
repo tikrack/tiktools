@@ -94,6 +94,12 @@ class GithubController
             $template .= $repo["description"] . "\n\n";
         }
 
+        $template .= $repo["url"] . "\n";
+
+        foreach ($repo["topics"] as $topic) {
+            $template .= "#" . $topic . " ";
+        }
+
         TelegramController::send($template);
     }
 }
