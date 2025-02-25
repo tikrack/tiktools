@@ -74,4 +74,13 @@ class GithubController
 
         fclose($file);
     }
+
+    public static function write()
+    {
+        $file = fopen("../data/Written.json", "w");
+
+        fwrite($file, json_encode(["ojd" => "ssokok"], JSON_PRETTY_PRINT));
+
+        fclose($file);
+    }
 }
