@@ -2,6 +2,4 @@
 
 namespace App\Utils;
 
-class Log {
-
-}
+class Log {}

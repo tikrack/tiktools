@@ -9,8 +9,8 @@ class GithubController
 {
     public static function repo(): void
     {
-        $token = env("GITHUB_ACCESS_TOKEN");
-        $username = env("GITHUB_USERNAME");
+        $token = env('GITHUB_ACCESS_TOKEN');
+        $username = env('GITHUB_USERNAME');
 
         $client = new Client([
             'base_uri' => 'https://api.github.com',
@@ -30,7 +30,7 @@ class GithubController
                         'page' => $page,
                         'per_page' => 10,
                         'sort' => 'updated',
-                        'direction' => 'desc'
+                        'direction' => 'desc',
                     ],
                 ]);
 
@@ -47,9 +47,9 @@ class GithubController
 
             self::saveRepo($repositories);
         } catch (RequestException $e) {
-            echo "Error: " . $e->getMessage();
+            echo 'Error: '.$e->getMessage();
             if ($e->hasResponse()) {
-                echo "\nResponse: " . $e->getResponse()->getBody();
+                echo "\nResponse: ".$e->getResponse()->getBody();
             }
         }
     }
@@ -62,13 +62,13 @@ class GithubController
             if (isset($repo['topics'][0])) {
                 $topics = $repo['topics'];
 
-                if (in_array("tiktools", $topics)) {
+                if (in_array('tiktools', $topics)) {
                     $tiktools[] = $repo;
                 }
             }
         }
 
-        $file = fopen("../data/Repos.json", "w");
+        $file = fopen('../data/Repos.json', 'w');
 
         fwrite($file, json_encode($tiktools, JSON_PRETTY_PRINT));
 
@@ -77,9 +77,9 @@ class GithubController
 
     public static function write()
     {
-        $file = fopen("../data/Written.json", "w");
+        $file = fopen('../data/Written.json', 'w');
 
-        fwrite($file, json_encode(["ojd" => "ssokok"], JSON_PRETTY_PRINT));
+        fwrite($file, json_encode(['ojd' => 'ssokok'], JSON_PRETTY_PRINT));
 
         fclose($file);
     }

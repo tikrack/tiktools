@@ -2,6 +2,7 @@
 
 <?php
 
+use App\Controllers\StartController;
 use App\Utils\Console;
 
 require 'vendor/autoload.php';
@@ -16,8 +17,15 @@ switch ($argv[0]) {
     case "serve":
     case "start":
         shell_exec("cd public && php -S 127.0.0.1:8000");
+
+        break;
+    case "run":
+        $start = new StartController();
+        $start->start();
+
         break;
     default:
         $console->print("Command [$argv[0]] Not Found.", "green");
+
         break;
 }
