@@ -86,7 +86,7 @@ class GithubController
 
     private static function create($repo): void
     {
-        global $template;
+        $template = "";
 
         $template .= $repo["name"] . "\n";
 
