@@ -17,7 +17,7 @@ class TelegramController
         $url = "https://api.telegram.org/bot{$token}/sendMessage";
 
         try {
-            $client->post($url, ['form_params' => ['chat_id' => $channelUsername, 'text' => $message]]);
+            $client->post($url, ['form_params' => ['parse_mode' => "HTML", 'chat_id' => $channelUsername, 'text' => $message]]);
         } catch (Exception $e) {
             dd($e->getMessage());
         } catch (GuzzleException $e) {
