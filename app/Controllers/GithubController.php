@@ -108,8 +108,6 @@ class GithubController
 
         if ($map !== true) {
             $message_id = TelegramController::send($template);
-        }else {
-            TelegramController::update($template, $repo["message_id"]);
         }
 
         $writtenFile = fopen("../data/Written.json", "r");
@@ -118,24 +116,17 @@ class GithubController
         $written = json_decode($written, true);
 
         if ($map !== true) {
-            $written[] = [
-                'id' => $repo["id"],
-                'last_update' => $repo["updated_at"],
-                'message_id' => $message_id
-            ];
+            $written[] = ['id' => $repo["id"], 'last_update' => $repo["updated_at"], 'message_id' => $message_id];
             $file = fopen('../data/Written.json', 'w');
             fwrite($file, json_encode($written, JSON_PRETTY_PRINT));
             fclose($file);
-        }else {
+        } else {
             $newContent = [];
             foreach ($written as $w) {
                 if ($w["id"] === $repo["id"]) {
-                    $newContent[] = [
-                        'id' => $w["id"],
-                        'last_update' => $repo["updated_at"],
-                        'message_id' => $repo["message_id"],
-                    ];
-                }else {
+                    $newContent[] = ['id' => $w["id"], 'last_update' => $repo["updated_at"], 'message_id' => $w["message_id"],];
+                    TelegramController::update($template, $w["message_id"]);
+                } else {
                     $newContent[] = $w;
                 }
             }
