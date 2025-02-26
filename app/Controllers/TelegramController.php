@@ -19,7 +19,7 @@ class TelegramController
         try {
             $result = $client->post($url, ['form_params' => ['parse_mode' => "HTML", 'chat_id' => $channelUsername, 'text' => $message]]);
 
-            dd($result->getBody(), json_decode($result->getBody(), true));
+            dd($result->getBody(), json_decode($result->getBody(), true)->result->message_id);
         } catch (Exception $e) {
             dd($e->getMessage());
         } catch (GuzzleException $e) {
