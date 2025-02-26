@@ -118,22 +118,24 @@ class GithubController
                 'id' => $repo["id"],
                 'last_update' => $repo["updated_at"],
             ];
+            $file = fopen('../data/Written.json', 'w');
+            fwrite($file, json_encode($written, JSON_PRETTY_PRINT));
+            fclose($file);
         }else {
             $newContent = [];
             foreach ($written as $w) {
                 if ($w["id"] === $repo["id"]) {
                     $newContent[] = [
                         'id' => $w["id"],
-                        'last_update' => $w["updated_at"],
+                        'last_update' => $repo["updated_at"],
                     ];
                 }else {
                     $newContent[] = $w;
                 }
             }
+            $file = fopen('../data/Written.json', 'w');
+            fwrite($file, json_encode($newContent, JSON_PRETTY_PRINT));
+            fclose($file);
         }
-
-        $file = fopen('../data/Written.json', 'w');
-        fwrite($file, json_encode($written, JSON_PRETTY_PRINT));
-        fclose($file);
     }
 }
