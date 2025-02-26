@@ -136,6 +136,8 @@ class GithubController
             $file = fopen('../data/Written.json', 'w');
             fwrite($file, json_encode($newContent, JSON_PRETTY_PRINT));
             fclose($file);
+
+            //test
         }
     }
 }
