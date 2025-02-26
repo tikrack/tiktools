@@ -106,7 +106,7 @@ class GithubController
             $template .= "#" . $topic . " ";
         }
 
-        TelegramController::send($template);
+        $message_id = TelegramController::send($template);
 
         $writtenFile = fopen("../data/Written.json", "r");
         $written = fread($writtenFile, filesize("../data/Written.json"));
@@ -117,6 +117,7 @@ class GithubController
             $written[] = [
                 'id' => $repo["id"],
                 'last_update' => $repo["updated_at"],
+                'message_id' => $message_id
             ];
             $file = fopen('../data/Written.json', 'w');
             fwrite($file, json_encode($written, JSON_PRETTY_PRINT));
@@ -128,6 +129,7 @@ class GithubController
                     $newContent[] = [
                         'id' => $w["id"],
                         'last_update' => $repo["updated_at"],
+                        'message_id' => $message_id
                     ];
                 }else {
                     $newContent[] = $w;
@@ -136,9 +138,6 @@ class GithubController
             $file = fopen('../data/Written.json', 'w');
             fwrite($file, json_encode($newContent, JSON_PRETTY_PRINT));
             fclose($file);
-
-            //test
-            //test
         }
     }
 }
