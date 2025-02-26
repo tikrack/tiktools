@@ -106,7 +106,11 @@ class GithubController
             $template .= "#" . $topic . " ";
         }
 
-        $message_id = TelegramController::send($template);
+        if ($map !== true) {
+            $message_id = TelegramController::send($template);
+        }else {
+            TelegramController::update($template, $repo["message_id"]);
+        }
 
         $writtenFile = fopen("../data/Written.json", "r");
         $written = fread($writtenFile, filesize("../data/Written.json"));
@@ -129,7 +133,7 @@ class GithubController
                     $newContent[] = [
                         'id' => $w["id"],
                         'last_update' => $repo["updated_at"],
-                        'message_id' => $message_id
+                        'message_id' => $repo["message_id"],
                     ];
                 }else {
                     $newContent[] = $w;
