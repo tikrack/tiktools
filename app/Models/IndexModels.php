@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+use Flight;
+
 class IndexModels
 {
     public $name;
 
-    protected static function GetAll(): void
+    protected static function iAll()
     {
         $instance = new static();
         $instance->setName(get_called_class());
+        $db = Flight::db();
+
+        return $db->fetchAll("SELECT * FROM $instance->name");
     }
 
     private function setName($className): void

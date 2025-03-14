@@ -4,8 +4,8 @@ namespace App\Models;
 
 class Repository extends IndexModels
 {
-    public static function all(): void
+    public static function all()
     {
-        static::GetAll();
+        return static::iAll();
     }
 }

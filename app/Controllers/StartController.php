@@ -8,6 +8,6 @@ class StartController
 {
     public function start(): void
     {
-        Repository::all();
+        dd(Repository::all());
     }
 }
