@@ -14,7 +14,7 @@ class IndexModels
         $instance->setName(get_called_class());
         $db = Flight::db();
 
-        return $db->fetchAll("SELECT * FROM $instance->name");
+        return $db->fetchAll("SELECT * FROM `$instance->name`");
     }
 
     private function setName($className): void
@@ -39,5 +39,24 @@ class IndexModels
         }
 
         return $word . 's';
+    }
+
+    protected static function iCreate($data)
+    {
+        $instance = new static();
+        $instance->setName(get_called_class());
+        $db = Flight::db();
+
+//        dd("INSERT INTO `$instance->name` (" . substr(json_encode(array_keys($data)), 1, -1) . ") VALUES ()");
+        $lastData = str_replace('"', '`', substr(json_encode(array_keys($data)), 1, -1));
+        $values = [];
+
+        for ($i = 0; $i < count($data); $i++) {
+            $values[] = "?";
+        }
+
+        $values = str_replace('"', '', substr(json_encode(array_values($values)), 1, -1));
+
+        $db->runQuery("INSERT INTO `$instance->name` (" . $lastData . ") VALUES ($values)", ["d", "4"]);
     }
 }

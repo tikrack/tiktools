@@ -8,4 +8,9 @@ class Repository extends IndexModels
     {
         return static::iAll();
     }
+
+    public static function create($data)
+    {
+        return static::iCreate($data);
+    }
 }
