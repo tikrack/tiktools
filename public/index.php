@@ -3,8 +3,8 @@
 use App\Controllers\StartController;
 
 require '../vendor/autoload.php';
+require '../bootstrap/bootstrap.php';
 
-Flight::route('POST /', [new StartController, 'start']);
-Flight::route('GET /', [new StartController, 'start']);
+Flight::route('POST|GET /', [new StartController, 'start']);
 
 Flight::start();
