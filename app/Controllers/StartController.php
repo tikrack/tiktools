@@ -2,13 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\IndexModels;
+use App\Models\Repository;
 use Flight;
 
 class StartController
 {
     public function start(): void
     {
-//        GithubController::repo();
-//        GithubController::write();
+        $rep = new Repository();
+        $rep->test();
     }
 }
