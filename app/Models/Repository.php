@@ -4,8 +4,8 @@ namespace App\Models;
 
 class Repository extends IndexModels
 {
-    public function test()
+    public static function all(): void
     {
-        $this->logCaller();
+        static::GetAll();
     }
 }

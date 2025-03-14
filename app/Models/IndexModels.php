@@ -6,38 +6,26 @@ class IndexModels
 {
     public $name;
 
-    public function __construct()
+    protected static function GetAll(): void
     {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        $name = substr($backtrace[1]["class"], 11);
-        $name = strtolower($name);
+        $instance = new static();
+        $instance->setName(get_called_class());
     }
 
-    function pluralize($word) {
-        $irregulars = [
-            'child' => 'children',
-            'foot' => 'feet',
-            'tooth' => 'teeth',
-            'goose' => 'geese',
-            'man' => 'men',
-            'woman' => 'women',
-            'person' => 'people',
-            'mouse' => 'mice',
-            'sheep' => 'sheep',
-            'fish' => 'fish',
-            'species' => 'species',
-        ];
+    private function setName($className): void
+    {
+        $this->name = $this->pluralize(strtolower(substr($className, 11)));
+    }
+
+    private function pluralize($word): string
+    {
+        $irregulars = ['child' => 'children', 'foot' => 'feet', 'tooth' => 'teeth', 'goose' => 'geese', 'man' => 'men', 'woman' => 'women', 'person' => 'people', 'mouse' => 'mice', 'sheep' => 'sheep', 'fish' => 'fish', 'species' => 'species',];
 
         if (array_key_exists(strtolower($word), $irregulars)) {
             return $irregulars[strtolower($word)];
         }
 
-        $rules = [
-            '/(s|sh|ch|x|z)$/i' => '\1es',
-            '/([^aeiou])y$/i' => '\1ies',
-            '/(o)$/i' => '\1es',
-            '/(f|fe)$/i' => 'ves',
-        ];
+        $rules = ['/(s|sh|ch|x|z)$/i' => '\1es', '/([^aeiou])y$/i' => '\1ies', '/(o)$/i' => '\1es', '/(f|fe)$/i' => 'ves',];
 
         foreach ($rules as $pattern => $replacement) {
             if (preg_match($pattern, $word)) {
@@ -46,9 +34,5 @@ class IndexModels
         }
 
         return $word . 's';
-    }
-
-    protected function logCaller() {
-
     }
 }
