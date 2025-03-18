@@ -41,13 +41,12 @@ class IndexModels
         return $word . 's';
     }
 
-    protected static function iCreate($data)
+    protected static function iCreate($data): void
     {
         $instance = new static();
         $instance->setName(get_called_class());
         $db = Flight::db();
 
-//        dd("INSERT INTO `$instance->name` (" . substr(json_encode(array_keys($data)), 1, -1) . ") VALUES ()");
         $lastData = str_replace('"', '`', substr(json_encode(array_keys($data)), 1, -1));
         $values = [];
 
@@ -58,5 +57,23 @@ class IndexModels
         $values = str_replace('"', '', substr(json_encode(array_values($values)), 1, -1));
 
         $db->runQuery("INSERT INTO `$instance->name` (" . $lastData . ") VALUES ($values)", ["d", "4"]);
+    }
+
+    protected static function iRemove($id): void
+    {
+        $instance = new static();
+        $instance->setName(get_called_class());
+        $db = Flight::db();
+
+        $db->runQuery("DELETE FROM `$instance->name` WHERE id = ?", [$id]);
+    }
+
+    protected static function iFind($id)
+    {
+        $instance = new static();
+        $instance->setName(get_called_class());
+        $db = Flight::db();
+
+        return $db->fetchAll("SELECT * FROM `$instance->name` WHERE id = ?", [$id]);
     }
 }

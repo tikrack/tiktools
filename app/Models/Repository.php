@@ -9,8 +9,18 @@ class Repository extends IndexModels
         return static::iAll();
     }
 
-    public static function create($data)
+    public static function create($data): void
     {
-        return static::iCreate($data);
+        static::iCreate($data);
+    }
+
+    public static function remove($id): void
+    {
+        static::iRemove($id);
+    }
+
+    public static function find($id)
+    {
+        return static::iFind($id);
     }
 }
